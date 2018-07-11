@@ -1,0 +1,19 @@
+{% extends "index2.html" %}
+{% block content%}
+<div class="container addface">
+
+
+<h1>Added New Visitor {{ name }} , {{ age }}, {{ sex }}</h1>
+<h2>Add the visitor's face to the database</h2>
+<img class="img-fluid" id="video" src="{{ url_for('video_viewer') }}">
+<!--
+<form id="addface" action="" method="post">
+<button id="addfacebtn" class="btn btn-dark">Take picture</button>
+</form>
+
+-->
+
+<br>
+        <a class="btn btn-dark" href="{{ url_for('takepic',name=name ,age=age,sex=sex) }}">Add Face</a>
+</div>
+{% endblock %}

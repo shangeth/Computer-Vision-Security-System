@@ -1,0 +1,36 @@
+{% extends "index2.html" %}
+{% block content%}
+<div class="container-fluid ">
+
+    <div class="row align-items-start ">
+
+    <div class="col-md-6 outcol">
+       <div class="adminlive">
+    <h1><strong>Admin Page </strong>: Streaming Live</h1>
+  <div id="recorder">
+    <button class="btn btn-dark" id="record">Record</button>
+    <button class="btn btn-dark" id="stop">Stop</button>
+    <a id="download"></a>
+    <script type="text/javascript" src="{{ url_for('static', filename='recorder.js') }}"></script>
+  </div>
+  <img class="img-fluid" id="video" src="{{ url_for('video_viewer') }}">
+    </div>
+</div>
+
+
+<div class="col-md-6 outcol">
+<div class="log">
+    <h2><strong>Admin</strong> Entrance Log</h2>
+<ol style="overflow: scroll;" class="list-group">
+    {% for log in logs %}
+        <li class="list-group-item list-group-item-dark"><pre><strong> {{ log[1] }}</strong>     {{ log[2] }}  </pre></li>
+    {% endfor %}
+    </ol>
+</div>
+</div>
+
+
+</div>
+
+</div>
+{% endblock %}

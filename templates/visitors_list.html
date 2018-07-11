@@ -1,0 +1,14 @@
+{% extends "index2.html" %}
+{% block content%}
+<div class="container" id="list">
+
+<h2>Permitted Visitors list</h2>
+    <ol style="overflow: scroll" class="list-group">
+    {% for visitor in visitors %}
+    <li class="list-group-item list-group-item-dark"> <strong>{{ visitor[1] }}</strong>     {{ visitor[2] }}    {{ visitor[3] }}</li>
+    {% endfor %}
+    </ol>
+
+</div>
+
+{% endblock %}

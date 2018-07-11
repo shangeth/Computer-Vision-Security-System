@@ -1,27 +1,24 @@
 import cv2
 import sqlite3
+import os
+import numpy as np
+from PIL import Image
 
+'''
+To change camera change the 0 to 1 for USB camera.
+'''
 cam = cv2.VideoCapture(0)
 detector = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
-def insertFaceName(Id,name):
+def getID():
     conn = sqlite3.connect("faceInfoData.db")
-    cur = conn.execute("SELECT * FROM People WHERE ID="+str(Id))
-    recordExists=0
-    for row in cur:
-        recordExists = 1
-    if(recordExists == 1):
-        conn.execute("UPDATE People SET NAME = ?  WHERE ID= ? ",(name,Id))
-    else:
-        conn.execute("INSERT INTO People (ID,Name) VALUES (?,?)",(Id,name))
-    conn.commit()
-    conn.close()
+    cur = conn.execute('SELECT max(id) FROM Visitors')
+    id = cur.fetchone()[0]
+    cur.close()
+    return int(id)
 
 
-Id = int(input('Enter the id : '))
-Name = str(input('Enter the Name : '))
-
-insertFaceName(Id,Name)
+id = getID()
 idCount = 0
 while (True):
     ret, img = cam.read()
@@ -31,7 +28,7 @@ while (True):
         cv2.rectangle(img, (x, y), (x + w, y + h), (255, 0, 0), 2)
 
         idCount = idCount + 1
-        cv2.imwrite("faceData/User." + str(Id) + '.' + str(idCount) + ".jpg", gray[y:y + h, x:x + w])
+        cv2.imwrite("faceData/User." + str(id) + '.' + str(idCount) + ".jpg", gray[y:y + h, x:x + w])
 
         cv2.imshow('frame', img)
     if cv2.waitKey(200) & 0xFF == ord('q'):
@@ -40,3 +37,30 @@ while (True):
         break
 cam.release()
 cv2.destroyAllWindows()
+
+
+recognizer = cv2.face.LBPHFaceRecognizer_create()
+detector= cv2.CascadeClassifier("haarcascade_frontalface_default.xml");
+
+def getImagesAndLabels(path):
+    imagePaths=[os.path.join(path,f) for f in os.listdir(path)]
+    faceSamples=[]
+    Ids=[]
+
+    for imagePath in imagePaths:
+        pilImage=Image.open(imagePath).convert('L')
+
+        imageNp=np.array(pilImage,'uint8')
+
+        Id=int(os.path.split(imagePath)[-1].split(".")[1])
+        faces=detector.detectMultiScale(imageNp)
+
+        for (x,y,w,h) in faces:
+            faceSamples.append(imageNp[y:y+h,x:x+w])
+            Ids.append(Id)
+    return faceSamples,Ids
+
+
+faces,Ids = getImagesAndLabels('faceData')
+recognizer.train(faces, np.array(Ids))
+recognizer.save('trainedData/trainingData.yml')

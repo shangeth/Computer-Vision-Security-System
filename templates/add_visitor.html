@@ -1,0 +1,30 @@
+{% extends "index2.html" %}
+{% block content%}
+    <div class="container outform">
+<div class="visitorform">
+
+ <form action="{{ url_for('submitVisitor') }}" method="post">
+     <h2>Enter the Visitor Details:</h2>
+  <div class="form-group">
+    <label for="visitor_name">Name</label>
+ <input name="visitor_name" type="text" class="form-control" id="visitor_name" aria-describedby="nameHelp" placeholder="Name of the visitor">
+  </div>
+  <div class="form-group">
+    <label for="visitor_age">Age</label>
+    <input name="visitor_age" type="text" class="form-control" id="visitor_age" aria-describedby="nameHelp" placeholder="Age">
+  </div>
+
+     <div class="form-group">
+    <label for="visitor_sex">Sex</label>
+    <input name="visitor_sex" type="text" class="form-control" id="visitor_sex" aria-describedby="nameHelp" placeholder="M/F/T">
+  </div>
+
+
+<br><br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+    </div>
+</div>
+
+
+{% endblock %}

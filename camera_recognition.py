@@ -37,7 +37,7 @@ def dropbox_sms(filename,msg):
     targetfile = target + filename  # the target path and file name
 
     # Create a dropbox object using an API v2 key
-    d = dropbox.Dropbox('Jk9gMM2_WiAAAAAAAAAABjHLvf6m_FPXE8NDjqNmIBEQJ7KAmAP7qyKrMpZrKTKv')
+    d = dropbox.Dropbox('Enter your Key here!!!')
     '''
     CHANGE THE API from your dropbox account  : change inside of d = dropbox.Dropbox('Your KEY here!!!!')
 
@@ -58,7 +58,7 @@ def dropbox_sms(filename,msg):
     dl_url = re.sub(r"\?dl\=0", "?dl=1", url)
 
     # the following line needs your Twilio Account SID and Auth Token
-    client = Client("ACfeb6fcc8a5ed9fdc5668fa16e1bce7a2", "c327b1f232640ef7b43cc47fd0563e38")
+    client = Client("Account SID here!!", "Auth TOken here!!!")
     '''
     CHANGE THE SID AND AUTH TOKEN HERE!!!!!   
         client = Client("YOur SID Here", "your AUTH Token here")

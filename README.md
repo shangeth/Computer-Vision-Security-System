@@ -27,6 +27,10 @@ A Security System using the face recognition, which can be monitored from anywhe
 > 3. Router (optional)
 
 <br><br>
+## Cloning the code from git
+> 1. `git clone https://github.com/shangeth/Computer-Vision-Security-System.git`
+
+<br><br>
 ## Running the program
 > 1. `cd server`
 > 2. `python server.py` this will open the webserver on `127.0.0.1:5000`

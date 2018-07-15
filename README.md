@@ -3,7 +3,6 @@ A Security System using the face recognition, which can be monitored from anywhe
 <br><br>
 
 # Installation
-<br><br>
 ## System Requirements
 
 ### 1. Python3

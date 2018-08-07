@@ -1,5 +1,5 @@
 # Computer-Vision-Security-System
-A Security System using the face recognition, which can be monitored from anywhere using a HTTP server, coded using Python and Jinja.
+A Security System using the face recognition, which can be monitored from anywhere using a HTTP server, coded using Python and Jinja2.
 <br><br>
 
 # Installation

@@ -74,7 +74,7 @@ def dropbox_sms(filename,msg):
     type your phone number in to="phone numer here"
     type your twilio phne number  in from="twilio phone number here" 
     '''
-    client.api.account.messages.create(to="+917218540834",
+    client.api.account.messages.create(to="your mobile number here",
                                        from_="+19412412342",
                                        body=msg,
                                        media_url=media)
